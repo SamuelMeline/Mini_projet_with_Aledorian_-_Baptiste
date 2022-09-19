@@ -5,11 +5,10 @@
         <li>
             <article class="my-2">
                 <header class="border-bottom py-2">
-                    <h2><a href="show_event.php?id=<?= $event['e.id'] ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
+                    <h2><a href="<?=url("/event?id=".$event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
                     <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
                 </header>
-                <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="show_event.php?id=<?= $event['e.id'] ?>">voir la suite</a>)
-            </article>
+                <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?=url("/event?id=".$event['id'])?>">voir la suite</a>)
         </li>
     <?php endforeach ?>
 </ul>

@@ -34,7 +34,12 @@ try {
     $controller->show404();
 } catch (Exception $e) {
     // Gestion des autres erreurs
+
     $user = new User();
+
+    var_dump($e->getMessage());
+    exit();
+
     http_response_code(500);
     $template = 'errors/500.phtml';
     require 'App/Views/layout.phtml';

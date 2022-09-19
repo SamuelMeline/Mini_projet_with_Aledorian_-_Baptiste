@@ -1,0 +1,10 @@
+<h1>Event</h1>
+
+<article class="border-bottom py-3 mb-2">
+    <header class="my-2">
+        <h2><?= htmlspecialchars($event['title']) ?></h2>
+        <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
+    </header>
+    <h3><?= htmlspecialchars($event['started_at']) ?></h3>
+    <p><?= htmlspecialchars($event['description']) ?></p>
+</article>
