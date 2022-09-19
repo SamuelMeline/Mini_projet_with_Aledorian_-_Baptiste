@@ -20,7 +20,7 @@ class Event extends AbstractModel{
     public function find(int $id): ?array
     {
         return $this->db->getOne(
-            'SELECT e.title, e.description, e.pictures, e.created_at, e.started_at, u.username, c.name
+            'SELECT e.title, e.description, e.pictures, e.created_at, e.started_at, e.category_id, u.username, c.name
             FROM Events e
             INNER JOIN Users u ON e.user_id = u.id
             INNER JOIN Categories c ON e.category_id = c.id
@@ -28,12 +28,12 @@ class Event extends AbstractModel{
         );
     }
 
-    public function editEvent($title, $description, $pictures, $start, $id) :void
+    public function editEvent($title, $description, $pictures, $start, $category, $id) :void
     {
         $this->db->execute(
-            "UPDATE Events SET title = ?, description = ?, pictures = ?, started_at = ? WHERE id = ?
+            "UPDATE Events SET title = ?, description = ?, pictures = ?, started_at = ?, category_id = ? WHERE id = ?
             ",
-            [$title, $description, $pictures, $start, $id]
+            [$title, $description, $pictures, $start, $category, $id]
         );
     }
     
