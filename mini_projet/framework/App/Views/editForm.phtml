@@ -1,0 +1,31 @@
+<form method='post'>
+
+    <input type="hidden" name = "id" value = "<?= $_GET['id'] ?>">
+
+    <label for="title" class='form-label'>Titre</label>
+    <input class="form-control" type="text" name="title" value="<?=$event['title']?>"/>
+    
+    <label for="content" class='form-label'>Article</label>
+    <textarea name="description" class="form-control"><?=$event['description']?></textarea>
+    
+    <label for="date">Date de début</label>
+    <input type="date"  class = 'form-select' name="date" id="">
+
+    <label for="hour">Date de début</label>
+    <input type="time"  class = 'form-select' name="hour" id="">
+
+    <label for="pictures"></label>
+    <input type="text" name="pictures" value="<?=$event['pictures'] ?>>
+        
+    <!-- <?php foreach ($categories as $category):?>
+                <?php if ($category['id'] == $event['category_id']): ?>
+                    <option selected value="<?= $category['id'] ?>"><?= ucfirst($category['name']) ?></option>
+                <?php else: ?>
+                    <option value="<?= $category['id'] ?>"><?= ucfirst($category['name']) ?></option>
+                <?php endif ?>
+        
+    <?php endforeach ?> -->
+        
+    </select>
+<button class="btn btn-primary" formaction="<?=url('/editEvent')?>">Editer l'événement</button>    
+</form>

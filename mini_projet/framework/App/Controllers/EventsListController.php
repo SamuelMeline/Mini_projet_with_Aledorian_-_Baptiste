@@ -7,7 +7,6 @@ use App\Models\Event;
 use App\Models\Comment;
 use App\Models\Category;
 use Libraries\Auth\User;
-
 class EventsListController extends AbstractController{
 
     public function index() : void
@@ -29,6 +28,7 @@ class EventsListController extends AbstractController{
             'event' => $showEvent
         ]);
     }
+
     public function create(): void
     {
         $user = new User();
@@ -57,5 +57,29 @@ class EventsListController extends AbstractController{
             
             $this->redirect('/');
         }
+    }
+
+    public function edit(): void
+    {
+        $model = new Event;
+
+        $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['date']." ".$_POST['hour'], $_POST['id']);
+
+
+        $this->redirect("/");
+    }
+
+    public function editForm() : void
+    {
+        $model = new Event();
+        $event = $model->find($_GET['id']);
+
+        $model = new Category;
+        $categories = $model->findAll();
+
+        $this->render('editForm.phtml', [
+            'event' => $event,
+            'categories' => $categories
+        ]);
     }
 } 

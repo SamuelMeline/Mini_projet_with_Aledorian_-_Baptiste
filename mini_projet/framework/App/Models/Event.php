@@ -28,6 +28,15 @@ class Event extends AbstractModel{
         );
     }
 
+    public function editEvent($title, $description, $pictures, $start, $id) :void
+    {
+        $this->db->execute(
+            "UPDATE Events SET title = ?, description = ?, pictures = ?, started_at = ? WHERE id = ?
+            ",
+            [$title, $description, $pictures, $start, $id]
+        );
+    }
+    
     public function findx(int $id): ? array
     {
         return $this->db->getAll(

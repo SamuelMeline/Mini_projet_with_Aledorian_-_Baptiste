@@ -12,7 +12,7 @@ return [
         'App\Controllers\HomeController',
         'index'
     ],
-        '/events' => [
+    '/events' => [
         'App\Controllers\EventsListController',
         'index'
     ],
@@ -28,4 +28,12 @@ return [
         'App\Controllers\AdminController',
         'index'
     ],
+    '/editEvent' => [
+        'App\Controllers\EventsListController',
+        'edit'
+    ],
+    '/edit' => [
+        'App\Controllers\EventsListController',
+        'editForm'
+    ],    
 ];
