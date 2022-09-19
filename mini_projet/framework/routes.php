@@ -16,7 +16,7 @@ return [
         'App\Controllers\EventsListController',
         'index'
     ],
-    
+
     '/event/{id}' => [
         'App\Controller\EventController',
         'show'
