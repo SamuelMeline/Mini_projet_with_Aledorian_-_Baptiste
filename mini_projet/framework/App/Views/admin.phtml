@@ -1,0 +1,31 @@
+<h1>Administration</h1>
+
+<nav>
+    <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Date de création</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($events as $event): ?>
+            <tr>
+                <td><a href="show_event.php?id=<?= $event['id'] ?>"><?= htmlspecialchars($event['title']) ?></a></td>
+                <td><?= htmlspecialchars($event['username']) ?></td>
+                <td><?= htmlspecialchars($event['name']) ?></td>
+                <td><?= $event['created_at'] ?></td>
+                <td>
+                    <a href="<?= url('/events/edit?id=' . $event['id']) ?>">Modifier</a> | 
+                    <a href="<?= url('/events/delete?id=' . $event['id']) ?>">Supprimer</a>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
