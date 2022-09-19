@@ -14,7 +14,7 @@ class HomeController extends AbstractController
         $events = $model->findAll();
         
         // Afficher le template
-        $this->render('home.phtml', [
+        $this->render('Home.phtml', [
             'events' => $events  
         ]);
     }
