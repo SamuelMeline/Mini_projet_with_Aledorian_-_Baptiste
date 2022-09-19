@@ -1,0 +1,15 @@
+<h1>Accueil</h1>
+
+<ul class="list-unstyled">
+    <?php foreach ($events as $event): ?>
+        <li>
+            <article class="my-2">
+                <header class="border-bottom py-2">
+                    <h2><a href="show_event.php?id=<?= $event['id'] ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
+                    <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
+                </header>
+                <?= nl2br(htmlspecialchars(substr($event['content'], 0, 300))) ?>[...] (<a href="show_event.php?id=<?= $event['id'] ?>">voir la suite</a>)
+            </article>
+        </li>
+    <?php endforeach ?>
+</ul>
