@@ -18,7 +18,7 @@ return [
     ],
 
     '/event/{id}' => [
-        'App\Controller\EventController',
+        'App\Controllers\EventController',
         'show'
     ]
 ];
