@@ -17,11 +17,11 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 * Accueil (Liste des 5 derniers événements et des 5 derniers commentaires) => 3
 * Liste des événements => 1
 * Détail d'un événement => 2
-* Création d'un événement =>
-* Modifier un événement => 
+* Création d'un événement => 3
+* Modifier un événement => 1
 * Supprimer un événement (Back-office) =>
 * Liste des commentaires d'un événement =>
-* Création d'un commentaire sur un événement =>
+* Création d'un commentaire sur un événement => 2
 * Suppression des commentaires (Back-office) =>
 * Création d'un back-office (interface d'administration) =>
 * Inscription =>
