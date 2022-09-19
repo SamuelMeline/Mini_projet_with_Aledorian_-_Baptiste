@@ -19,7 +19,7 @@ class EventsListController extends AbstractController{
 
     public function show(): void
     {
-        $model = new EventModel();
+        $model = new Event();
         $showEvent = $model->find($_GET['id']);
 
         $this->render('show_event.phtml',[
