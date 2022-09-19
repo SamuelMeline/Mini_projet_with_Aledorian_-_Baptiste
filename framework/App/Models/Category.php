@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Libraries\MVC\AbstractModel;
 
-class CategoryModel extends AbstractModel
+class Category extends AbstractModel
 {
     public function findAll(): array
     {
