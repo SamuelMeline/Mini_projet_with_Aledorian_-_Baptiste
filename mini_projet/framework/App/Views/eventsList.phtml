@@ -1,0 +1,10 @@
+
+<h1>Liste des évenements</h1>
+
+<?php foreach($events as $event) : ?>   
+
+    <h2><?= htmlspecialchars($event['title']) ?> aura lieu le <?= htmlspecialchars($event['started_at']) ?></h2>
+    <p><?= htmlspecialchars($event['description']) ?></p>
+    <sub>crée le : <?= htmlspecialchars($event['created_at']) ?> par <?= htmlspecialchars($event['username']) ?>
+
+<?php endforeach ?>
