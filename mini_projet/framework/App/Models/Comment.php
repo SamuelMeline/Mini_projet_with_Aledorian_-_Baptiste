@@ -15,7 +15,7 @@ class Comment extends AbstractModel
     {
         return $this->db->getAll(
             'SELECT c.id, c.nickname, c.content, c.created_at, c.post_id, p.title
-            FROM comments c
+            FROM Comments c
             INNER JOIN posts p ON p.id = c.post_id
             ORDER BY c.created_at DESC'
         );
@@ -31,7 +31,7 @@ class Comment extends AbstractModel
     {
         return $this->db->getAll(
             'SELECT c.id, c.nickname, c.content, c.created_at, c.post_id
-            FROM comments c
+            FROM Comments c
             WHERE c.post_id = ?
             ORDER BY c.created_at DESC', [
                 $postId    
@@ -47,5 +47,16 @@ class Comment extends AbstractModel
             $comment['content'],
             $comment['post_id']
         ]);
+    }
+
+    public function findx(int $id): ? array
+    {
+        return $this->db->getAll(
+            'SELECT c.id, c.content, c.created_at, c.user_id, c.event_id
+            FROM Comments c
+            INNER JOIN Users u ON c.user_id = u.id
+            INNER JOIN Events e ON e.id = c.event_id
+            limit 5'
+        );
     }
 }

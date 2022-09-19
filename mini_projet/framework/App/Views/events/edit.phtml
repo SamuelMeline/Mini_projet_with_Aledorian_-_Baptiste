@@ -1,0 +1,28 @@
+<h1>Modification d'un événement</h1>
+
+<form method="post">
+    <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+    <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" value="<?= $event['title'] ?>" name="title" id="title" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="form-control" cols="30" rows="10"><?= $event['description'] ?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select name="category" id="category" class="form-control">
+            <?php foreach ($categories as $category): ?>
+                <?php if ($category['id'] == $post['category_id']): ?>
+                    <option selected value="<?= $category['id'] ?>"><?= ucfirst($category['name']) ?></option>
+                <?php else: ?>
+                    <option value="<?= $category['id'] ?>"><?= ucfirst($category['name']) ?></option>
+                <?php endif ?>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <div class="mt-2">
+        <button class="btn btn-primary">Modifier</button>
+    </div>
+</form>

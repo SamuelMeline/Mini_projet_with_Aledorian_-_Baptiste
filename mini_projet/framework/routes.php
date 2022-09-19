@@ -16,8 +16,16 @@ return [
         'App\Controllers\EventsListController',
         'index'
     ],
-    
+    '/events/create' => [
+        'App\Controllers\EventsListController',
+        'create'
+    ],
     '/event' => [
         'App\Controllers\EventsListController',
-
+        'show'
+    ],
+    '/admin' => [
+        'App\Controllers\AdminController',
+        'index'
+    ],
 ];
