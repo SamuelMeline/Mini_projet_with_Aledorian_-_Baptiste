@@ -2,6 +2,7 @@
 
 use Libraries\Http\NotFoundException;
 use App\Controllers\ErrorController;
+use Libraries\Auth\User;
 
 try {
     session_start();
@@ -33,6 +34,7 @@ try {
     $controller->show404();
 } catch (Exception $e) {
     // Gestion des autres erreurs
+    $user = new User();
     http_response_code(500);
     $template = 'errors/500.phtml';
     require 'App/Views/layout.phtml';

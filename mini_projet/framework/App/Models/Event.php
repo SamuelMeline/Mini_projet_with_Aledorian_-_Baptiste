@@ -16,9 +16,6 @@ class Event extends AbstractModel{
             INNER JOIN Categories c ON e.category_id = c.id'
         );
     }
-<<<<<<< HEAD
-}
-=======
     
     public function find(int $id): ?array
     {
@@ -31,4 +28,3 @@ class Event extends AbstractModel{
         );
     }
 }
->>>>>>> b4df8f5b6b5b839d0a47756da7c8f988942fc0f3

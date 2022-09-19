@@ -32,7 +32,7 @@ class User
     
     public function getId(): ?int
     {
-        if ($this->authenticated()) {
+        if ($this->isAuthenticated()) {
             return $_SESSION['auth']['id'];
         } else {
             return null;
