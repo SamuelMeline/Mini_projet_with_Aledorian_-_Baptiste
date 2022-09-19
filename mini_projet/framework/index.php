@@ -12,7 +12,7 @@ try {
     });
     
     // Chargement du fichier qui contient les fonctions utilitaires
-    require 'helpers.php';
+    require 'utils.php';
     
     // Récupération de la route actuelle et des routes de l'application
     $route = $_SERVER['PATH_INFO'] ?? '/';

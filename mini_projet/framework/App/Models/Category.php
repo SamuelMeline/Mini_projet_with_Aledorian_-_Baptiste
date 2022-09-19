@@ -10,7 +10,7 @@ class Category extends AbstractModel
     {
         return $this->db->getAll(
             'SELECT c.id, c.name
-            FROM categories c
+            FROM Categories c
             ORDER BY c.name'  
         );
     }

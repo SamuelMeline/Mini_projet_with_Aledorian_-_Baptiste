@@ -18,7 +18,7 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 * Liste des événements => 1
 * Détail d'un événement => 2
 * Création d'un événement =>
-* Modifier un événement =>
+* Modifier un événement => 
 * Supprimer un événement (Back-office) =>
 * Liste des commentaires d'un événement =>
 * Création d'un commentaire sur un événement =>

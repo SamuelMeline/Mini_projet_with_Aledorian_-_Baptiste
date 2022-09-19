@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Libraries\MVC\AbstractController;
 use App\Models\Event;
+use App\Models\Category;
 
 class EventsListController extends AbstractController{
 
@@ -27,4 +28,27 @@ class EventsListController extends AbstractController{
         ]);
     }
 
+    public function edit(): void
+    {
+        $model = new Event;
+
+        $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['date']." ".$_POST['hour'], $_POST['id']);
+
+
+        $this->redirect("/");
+    }
+
+    public function editForm() : void
+    {
+        $model = new Event();
+        $event = $model->find($_GET['id']);
+
+        $model = new Category;
+        $categories = $model->findAll();
+
+        $this->render('editForm.phtml', [
+            'event' => $event,
+            'categories' => $categories
+        ]);
+    }
 } 

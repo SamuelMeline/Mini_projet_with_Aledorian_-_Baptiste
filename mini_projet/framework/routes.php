@@ -15,9 +15,17 @@ return [
         '/events' => [
         'App\Controllers\EventsListController',
         'index'
-    ],
-    
-    '/event' => [
+    ],   
+        '/event' => [
         'App\Controllers\EventsListController',
-
+        'show'
+    ],
+        '/editEvent' => [
+        'App\Controllers\EventsListController',
+        'edit'
+    ],
+        '/edit' => [
+        'App\Controllers\EventsListController',
+        'editForm'
+    ],    
 ];
