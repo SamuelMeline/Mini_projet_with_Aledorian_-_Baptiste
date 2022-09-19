@@ -14,5 +14,16 @@ class Event extends AbstractModel{
             FROM Events e
             INNER JOIN Users u ON e.user_id = u.id'
         );
-    }    
+    }
+    
+    public function find(int $id): ?array
+    {
+        return $this->db->getOne(
+            'SELECT e.title, e.description, e.pictures, e.created_at, e.started_at
+            FROM Events e
+            INNER JOIN users u ON e.user_id = u.id
+            INNER JOIN categories c ON e.category_id = c.id
+            WHERE Events.id = ?', [$id]
+        );
+    }
 }
