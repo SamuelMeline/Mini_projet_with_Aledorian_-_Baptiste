@@ -4,28 +4,81 @@
     <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
 </nav>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Catégorie</th>
-            <th>Date de création</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($events as $event): ?>
-            <tr>
-                <td><a href="show_event.php?id=<?= $event['id'] ?>"><?= htmlspecialchars($event['title']) ?></a></td>
-                <td><?= htmlspecialchars($event['username']) ?></td>
-                <td><?= htmlspecialchars($event['name']) ?></td>
-                <td><?= $event['created_at'] ?></td>
-                <td>
-                    <a href="<?= url('/events/edit?id=' . $event['id']) ?>">Modifier</a> | 
-                    <a href="<?= url('/events/delete?id=' . $event['id']) ?>">Supprimer</a>
-                </td>
-            </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
+<div class="accordion my-5" id="accordionAdmin">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="eventHeading">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvent" aria-expanded="true" aria-controls="collapseEvent">
+            Evenement
+        </button>
+        </h2>
+        <div id="collapseEvent" class="accordion-collapse collapse" aria-labelledby="eventHeading" data-bs-parent="#accordionAdmin">
+            
+            <table class="table table-striped">
+                    
+                <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Auteur</th>
+                            <th>Catégorie</th>
+                            <th>Date de création</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php foreach ($events as $event): ?>
+                            <tr>
+                                <td><a href="<?=url('/event?id='.$event['id'] ) ?>"><?= htmlspecialchars($event['title']) ?></a></td>
+                                <td><?= htmlspecialchars($event['username']) ?></td>
+                                <td><?= htmlspecialchars($event['name']) ?></td>
+                                <td><?= htmlspecialchars($event['created_at']) ?></td>
+                                <td>
+                                    <a href="<?= url('/edit?id=' . $event['id']) ?>">Modifier</a> | 
+                                    <a href="<?= url('/events/delete?id=' . $event['id']) ?>">Supprimer</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="commentHeading">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment" aria-expanded="true" aria-controls="collapseComment">
+            Commentaire
+        </button>
+        </h2>
+        <div id="collapseComment" class="accordion-collapse collapse" aria-labelledby="eventHeading" data-bs-parent="#accordionAdmin">
+            
+            <table class="table table-striped">
+                    
+                <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Auteur</th>
+                            <th>Content</th>
+                            <th>Date de création</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php foreach ($comments as $comment): ?>
+                            <tr>
+                                <td><a href="<?=url('/event?id='.$comment['id'] ) ?>"><?= htmlspecialchars($comment['id']) ?></a></td>
+                                <td><?= htmlspecialchars($comment['username']) ?></td>
+                                <td><?= htmlspecialchars($comment['name']) ?></td>
+                                <td><?= htmlspecialchars($comment['content']) ?></td>
+                                <td><?= htmlspecialchars($comment['created_at']) ?></td>
+                                <td>
+                                    <a href="<?= url('/edit?id=' . $comment['id']) ?>">Modifier</a> | 
+                                    <a href="<?= url('/events/delete?id=' . $comment['id']) ?>">Supprimer</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

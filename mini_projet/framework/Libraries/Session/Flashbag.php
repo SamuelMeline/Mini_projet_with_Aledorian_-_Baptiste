@@ -23,7 +23,7 @@ class Flashbag
     
     public function hasErrors(): bool
     {
-        return count($_SESSION['errors']) > 0;
+        return isset($_SESSION['errors']) && count($_SESSION['errors']) > 0;
     }
     
     public function get(mixed $key): mixed
