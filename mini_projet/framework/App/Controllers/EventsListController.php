@@ -25,10 +25,7 @@ class EventsListController extends AbstractController{
         $showEvent = $model->find($_GET['id']);
 
         $model = new Comment();
-        $comment = $model->findByPost($_GET['id']);
-
-        var_dump($comment);
-
+        $comments = $model->findByPost($_GET['id']);
 
         $this->render('show_event.phtml',[
             'event' => $showEvent,
