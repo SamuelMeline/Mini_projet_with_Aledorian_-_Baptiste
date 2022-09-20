@@ -61,8 +61,8 @@ class EventsListController extends AbstractController{
 
     public function edit(): void
     {
-        $model = new Event;
         $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
+
         $this->redirect("/");
     }
 
@@ -79,6 +79,29 @@ class EventsListController extends AbstractController{
             'categories' => $categories
         ]);
     }
+
+    public function insertComment() : void
+    {
+        $model = new Comment();
+        $model->create([
+            'content' => $_POST['content'],
+            'user_id' => $_POST['user_id'],
+            'event_id' => $_POST['event_id']
+        ]);
+
+        $this->redirect('/events/show?id=' . $_POST['event_id']);
+    }
+
+    public function comment(int $id)
+    {
+        $model = new Comment();
+        $comments = $model->findx($_GET['id']);
+        
+        $this->render('show_event.phtml', [
+            'comments' => $comments
+            ]);
+    }
+    
     public function delete(): void
     {
         $user = new User();
@@ -90,5 +113,6 @@ class EventsListController extends AbstractController{
         $model = new Event();
         $model->delete($_GET['id']);
         $this->redirect('/admin');
+
     }
 } 

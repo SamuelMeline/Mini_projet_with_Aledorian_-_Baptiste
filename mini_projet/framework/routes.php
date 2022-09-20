@@ -40,6 +40,12 @@ return [
         'App\Controllers\EventsListController',
         'editForm'
     ],
+
+    '/event/comment' => [
+        'App\Controllers\EventsListController',
+        'insertComment'
+    ],  
+
     '/register' => [
         'App\Controllers\UserController',
         'register'
@@ -52,4 +58,5 @@ return [
         'App\Controllers\UserController',
         'logout'
     ],    
+
 ];

@@ -42,11 +42,13 @@ class Comment extends AbstractModel
     public function create(array $comment): void
     {
         $this->db->execute(
-            'INSERT INTO Comments (nickname, content, created_at, post_id) VALUES (?, ?, NOW(), ?)', [
-            $comment['nickname'],
-            $comment['content'],
-            $comment['post_id']
-        ]);
+            
+            'INSERT INTO Comments ( content, event_id, user_id) VALUES (?, ?, ?)', [
+                $comment['content'],
+                $comment['event_id'],
+                $comment['user_id']
+            ]
+        );
     }
 
     public function findx(int $id): ? array
