@@ -96,7 +96,6 @@ class EventsListController extends AbstractController{
             ]);
         }
         else {
-            
             $this->redirect('/login');
         }    
     }
