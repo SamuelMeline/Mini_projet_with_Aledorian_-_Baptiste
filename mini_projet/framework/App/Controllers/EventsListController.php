@@ -24,8 +24,15 @@ class EventsListController extends AbstractController{
         $model = new Event();
         $showEvent = $model->find($_GET['id']);
 
+        $model = new Comment();
+        $comment = $model->findByPost($_GET['id']);
+
+        var_dump($comment);
+
+
         $this->render('show_event.phtml',[
-            'event' => $showEvent
+            'event' => $showEvent,
+            'comments' => $comments
         ]);
     }
 
@@ -61,8 +68,8 @@ class EventsListController extends AbstractController{
 
     public function edit(): void
     {
-        $model = new Event;
         $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
+
         $this->redirect("/");
     }
 
@@ -78,5 +85,42 @@ class EventsListController extends AbstractController{
             'event' => $event,
             'categories' => $categories
         ]);
+    }
+
+    public function insertComment()
+    {
+        $user = new User;
+        $model = new Comment();
+        $comment = $model->create([            
+            'content' => $_POST['content'],
+            'event_id' => $_POST['event_id'],
+            'user_id' => $user->getId()]
+        );
+        
+        $this->redirect("/event?id=".$_POST['event_id']);
+    }
+
+    public function comment(int $id)
+    {
+        $model = new Comment();
+        $comments = $model->findx($_GET['id']);
+        
+        $this->render('show_event.phtml', [
+            'comments' => $comments
+            ]);
+    }
+    
+    public function delete(): void
+    {
+        $user = new User();
+        
+        if (! $user->isAuthenticated()) {
+            $this->redirect('/login');    
+        }
+        
+        $model = new Event();
+        $model->delete($_GET['id']);
+        $this->redirect('/admin');
+
     }
 } 

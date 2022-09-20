@@ -28,13 +28,13 @@ class Comment extends AbstractModel
      * @param int $postId L'id de l'article dont je veux tous les commentaires
      * @return array La liste des commentaires de l'article
      */
-    public function findByPost(int $postId): array
+    public function findByPost(int $eventId): array
     {
         return $this->db->getAll(
             'SELECT c.id, u.username, c.content, c.created_at, c.event_id
             FROM Comments c
             INNER JOIN Users u ON u.id = c.user_id
-            WHERE c.post_id = ?
+            WHERE c.event_id = ?
             ORDER BY c.created_at DESC', [
                 $eventId    
             ]
@@ -44,7 +44,7 @@ class Comment extends AbstractModel
     public function create(array $comment): void
     {
         $this->db->execute(
-            'INSERT INTO comments (content, user_id, event_id) VALUES (?, ?, ?)', [
+            'INSERT INTO Comments (content, user_id, event_id) VALUES (?, ?, ?)', [
             $comment['content'],
             $comment['user_id'],
             $comment['event_id']

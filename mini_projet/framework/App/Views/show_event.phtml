@@ -9,3 +9,33 @@
     <h3><?= htmlspecialchars($event['started_at']) ?></h3>
     <p><?= htmlspecialchars($event['description']) ?></p>
 </article>
+
+<section>
+    <h2>Espace commentaires</h2>
+    <form method="post">
+        <fieldset>
+            <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+            <legend>Ajouter un commentaire</legend>
+            <div class="form-group">
+                <label for="content">Commentaire</label>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-primary" formaction="<?= url('/event/comment') ?>">Ajouter</button>
+            </div>
+        </fieldset>
+    </form>
+    
+    <ul class="list-unstyled border-top py-2 my-2">
+        <?php foreach ($comments as $comment): ?>
+            <li class="mb-3">
+                <article>
+                    <header>
+                        <small>Rédigé le <?= $comment['created_at'] ?></small>
+                    </header>
+                    <?= htmlspecialchars($comment['content']) ?>
+                </article>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</section>
