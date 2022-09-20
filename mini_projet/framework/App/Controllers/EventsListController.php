@@ -33,9 +33,9 @@ class EventsListController extends AbstractController{
     {
         $user = new User();
         
-        // if (! $user->isAuthenticated()) {
-        //     $this->redirect('/login');
-        // }
+        if (! $user->isAuthenticated()) {
+            $this->redirect('/login');
+        }
         
         if (empty($_POST)) {
             $model = new Category();
@@ -62,9 +62,7 @@ class EventsListController extends AbstractController{
     public function edit(): void
     {
         $model = new Event;
-        $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['date']." ".$_POST['hour'], $_POST['id']);
-
-
+        $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
         $this->redirect("/");
     }
 

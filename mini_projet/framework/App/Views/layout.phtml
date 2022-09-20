@@ -21,13 +21,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/events') ?>">Liste des événements</a>
                             </li>
+                            <?php if ($user->isAuthenticated()): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/admin') ?>">Administration</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/logout') ?>">Déconnexion</a>
                             </li>
-                            <?php if ($user->isAuthenticated()): ?>
+                            <?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/register') ?>">Inscription</a>
                             </li>
