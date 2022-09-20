@@ -35,5 +35,9 @@ return [
     '/edit' => [
         'App\Controllers\EventsListController',
         'editForm'
-    ],    
+    ],
+    '/event/comment' => [
+        'App\Controllers\EventsListController',
+        'insertComment'
+    ]   
 ];
