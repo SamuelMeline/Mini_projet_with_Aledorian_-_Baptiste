@@ -22,9 +22,11 @@
                                 <a class="nav-link" href="<?= url('/events') ?>">Liste des événements</a>
                             </li>
                             <?php if ($user->isAuthenticated()): ?>
+                                <?php if ($user->getUsername() === "admin") : ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/admin') ?>">Administration</a>
                             </li>
+                                <?php endif ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= url('/logout') ?>">Déconnexion</a>
                             </li>
@@ -49,7 +51,8 @@
         </nav>
     </header>
     <main class="container my-2">
-        <?php require $template ?>
+        <?php 
+        require $template ?>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
