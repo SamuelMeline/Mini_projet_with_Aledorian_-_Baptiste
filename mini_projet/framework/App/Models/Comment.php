@@ -14,9 +14,10 @@ class Comment extends AbstractModel
     public function findAll(): array
     {
         return $this->db->getAll(
-            'SELECT c.id, c.nickname, c.content, c.created_at, c.post_id, p.title
+            'SELECT c.id, username, c.content, c.created_at, c.event_id, e.title
             FROM Comments c
-            INNER JOIN posts p ON p.id = c.post_id
+            INNER JOIN Events e ON e.id = c.event_id
+            INNER JOIN Users u ON u.id = c.user_id
             ORDER BY c.created_at DESC'
         );
     }
@@ -30,11 +31,12 @@ class Comment extends AbstractModel
     public function findByPost(int $postId): array
     {
         return $this->db->getAll(
-            'SELECT c.id, c.nickname, c.content, c.created_at, c.post_id
+            'SELECT c.id, u.username, c.content, c.created_at, c.event_id
             FROM Comments c
+            INNER JOIN Users u ON u.id = c.user_id
             WHERE c.post_id = ?
             ORDER BY c.created_at DESC', [
-                $postId    
+                $eventId    
             ]
         );
     }
@@ -42,17 +44,17 @@ class Comment extends AbstractModel
     public function create(array $comment): void
     {
         $this->db->execute(
-            'INSERT INTO comments (nickname, content, created_at, post_id) VALUES (?, ?, NOW(), ?)', [
-            $comment['nickname'],
+            'INSERT INTO comments (content, user_id, event_id) VALUES (?, ?, ?)', [
             $comment['content'],
-            $comment['post_id']
+            $comment['user_id'],
+            $comment['event_id']
         ]);
     }
 
     public function findx(int $id): ? array
     {
         return $this->db->getAll(
-            'SELECT c.id, c.content, c.created_at, c.user_id, c.event_id
+            'SELECT c.id, username, c.content, c.created_at, c.user_id, c.event_id
             FROM Comments c
             INNER JOIN Users u ON c.user_id = u.id
             INNER JOIN Events e ON e.id = c.event_id

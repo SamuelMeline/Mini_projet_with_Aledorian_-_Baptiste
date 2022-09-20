@@ -1,16 +1,39 @@
 <h1>Accueil</h1>
 
-<ul class="list-unstyled">
-    <?php foreach ($events as $event): ?>
-        <li>
-            <article class="my-2">
-                <header class="border-bottom py-2">
-                    <h2><a href="<?=url("/event?id=".$event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
-                    <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
-                </header>
-                <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=".$event['id']) ?>">voir la suite</a>)
-            </article>
-
-        </li>
-    <?php endforeach ?>
-</ul>
+<div class="row">
+    <div class="col-5">
+        <h2>Evenements</h2>
+        <ul class="list-unstyled">
+            <?php foreach ($events as $event): ?>
+                <li>
+                    <article class="my-2">
+                        <header class="border-bottom py-2">
+                            <h2><a href="<?=url("/event?id=".$event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
+                            <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
+                        </header>
+                        <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=".$event['id']) ?>">voir la suite</a>)
+                    </article>
+    
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+    
+    <div class="col-5 ms-5">
+        <h2>Commentaires</h2>
+        <ul class="list-unstyled">
+            <?php foreach ($comments as $comment): ?>
+                <li>
+                    <article class="my-2">
+                        <header class="border-bottom py-2">
+                            <h2><?= htmlspecialchars($comment['username']) ?></h2>
+                            le <?= $comment['created_at'] ?></small>
+                        </header>
+                        <?= nl2br(htmlspecialchars(substr($comment['content'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=".$event['id']) ?>">voir la suite</a>)
+                    </article>
+    
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+</div>

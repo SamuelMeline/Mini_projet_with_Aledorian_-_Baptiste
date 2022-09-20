@@ -51,7 +51,7 @@ class EventsListController extends AbstractController{
                 'description' => $_POST['description'],
                 'picture' => $_POST['picture'],
                 'started_at' => $_POST['date'],
-                '1',
+                'user_id' => $user->getId(),
                 'category_id' => $_POST['category'],
             ]);
             

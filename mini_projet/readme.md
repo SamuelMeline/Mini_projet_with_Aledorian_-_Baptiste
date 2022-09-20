@@ -19,16 +19,16 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 * Détail d'un événement => 2 DONE
 * Création d'un événement => 3 DONE
 * Modifier un événement => 1 DONE
-* Supprimer un événement (Back-office) =>
-* Liste des commentaires d'un événement =>
+* Supprimer un événement (Back-office) => DONE
+* Liste des commentaires d'un événement => 
 * Création d'un commentaire sur un événement => 2 
-* Suppression des commentaires (Back-office) =>
+* Suppression des commentaires (Back-office) => 
 * Création d'un back-office (interface d'administration) => page DONE (affichage des événements + commentaires)
-* Inscription => 3
-* Connexion =>
-* [BONUS] Inscription à un événement =>
-* [BONUS] Affichage des événements proche de ma position (géolocalisation) =>
-* [BONUS++] Accueil -> affichage de tous les événements sur une carte (style airbnb) =>
+* Inscription => DONE
+* Connexion => DONE
+* [BONUS] Inscription à un événement => 
+* [BONUS] Affichage des événements proche de ma position (géolocalisation) => 
+* [BONUS++] Accueil -> affichage de tous les événements sur une carte (style airbnb) => 
 
 ## Base de données
 

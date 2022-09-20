@@ -56,7 +56,7 @@ class Event extends AbstractModel{
                 $event['description'],
                 $event['picture'],
                 $event['started_at'],
-                1,
+                $event['user_id'],
                 $event['category_id']
             ]  
         );

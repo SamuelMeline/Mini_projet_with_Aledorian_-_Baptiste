@@ -55,7 +55,6 @@
                     
                 <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Auteur</th>
                             <th>Content</th>
                             <th>Date de création</th>
@@ -66,14 +65,11 @@
                     <tbody>
                         <?php foreach ($comments as $comment): ?>
                             <tr>
-                                <td><a href="<?=url('/event?id='.$comment['id'] ) ?>"><?= htmlspecialchars($comment['id']) ?></a></td>
                                 <td><?= htmlspecialchars($comment['username']) ?></td>
-                                <td><?= htmlspecialchars($comment['name']) ?></td>
-                                <td><?= htmlspecialchars($comment['content']) ?></td>
+                                <td class="col-8"><?= htmlspecialchars($comment['content']) ?></td>
                                 <td><?= htmlspecialchars($comment['created_at']) ?></td>
-                                <td>
-                                    <a href="<?= url('/edit?id=' . $comment['id']) ?>">Modifier</a> | 
-                                    <a href="<?= url('/events/delete?id=' . $comment['id']) ?>">Supprimer</a>
+                                <td> 
+                                    <a href="<?= url('/comments/delete?id=' . $comment['id']) ?>">Supprimer</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
