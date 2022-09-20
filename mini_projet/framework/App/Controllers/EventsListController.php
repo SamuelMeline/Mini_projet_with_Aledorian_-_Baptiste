@@ -98,6 +98,20 @@ class EventsListController extends AbstractController{
         $this->redirect("/event?id=".$_POST['event_id']);
     }
 
+        public function deleteComment(): void
+    {
+        $user = new User();
+        
+        if (! $user->isAuthenticated()) {
+            $this->redirect('/login');    
+        }
+        
+        $model = new Comment();
+        $model->delete($_GET['id']);
+        $this->redirect('/admin');
+
+    }
+
     public function comment(int $id)
     {
         $model = new Comment();

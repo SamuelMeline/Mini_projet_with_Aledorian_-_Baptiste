@@ -57,6 +57,10 @@ return [
     '/logout' => [
         'App\Controllers\UserController',
         'logout'
-    ],    
+    ],
+    '/comments/delete' => [
+        'App\Controllers\EventsListController',
+        'deleteComment'
+    ]    
 
 ];

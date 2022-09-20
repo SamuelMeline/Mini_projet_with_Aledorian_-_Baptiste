@@ -64,4 +64,11 @@ class Comment extends AbstractModel
             limit 5'
         );
     }
+
+    public function delete(int $id): void
+    {
+        $this->db->execute(
+            'DELETE FROM Comments WHERE id = ?', [$id]
+        );
+    }
 }
