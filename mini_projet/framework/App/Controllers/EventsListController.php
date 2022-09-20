@@ -102,13 +102,14 @@ class EventsListController extends AbstractController{
     {
         $user = new User();
         
-        if (! $user->isAuthenticated()) {
-            $this->redirect('/login');    
+        if($user->getUsername() === 'admin'){
+            $model = new Comment();
+            $model->delete($_GET['id']);
+            $this->redirect('/admin');
         }
-        
-        $model = new Comment();
-        $model->delete($_GET['id']);
-        $this->redirect('/admin');
+        else{
+            $this->redirect('/login'); 
+        }
 
     }
 
@@ -126,13 +127,17 @@ class EventsListController extends AbstractController{
     {
         $user = new User();
         
-        if (! $user->isAuthenticated()) {
+        if($user->getUsername() === 'admin')
+        {
+            $model = new Event();
+            $model->delete($_GET['id']);
+            $this->redirect('/admin');
+        }
+
+        else 
+        {
             $this->redirect('/login');    
         }
-        
-        $model = new Event();
-        $model->delete($_GET['id']);
-        $this->redirect('/admin');
 
     }
 } 

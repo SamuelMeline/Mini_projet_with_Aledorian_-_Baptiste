@@ -31,7 +31,7 @@
             <li class="mb-3">
                 <article>
                     <header>
-                        <small>Rédigé le <?= $comment['created_at'] ?></small>
+                        <small>Rédigé le <?= htmlspecialchars( $comment['created_at']) ?></small>
                     </header>
                     <?= htmlspecialchars($comment['content']) ?>
                 </article>
