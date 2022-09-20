@@ -49,8 +49,8 @@ class EventsListController extends AbstractController{
             $model->create([
                 'title' => $_POST['title'],
                 'description' => $_POST['description'],
-                'pictures' => $_POST['pictures'],
-                'started_at' => $_POST['started_at'],
+                'picture' => $_POST['picture'],
+                'started_at' => $_POST['date'],
                 '1',
                 'category_id' => $_POST['category'],
             ]);
@@ -64,6 +64,7 @@ class EventsListController extends AbstractController{
         $model = new Event;
 
         $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
+
 
         $this->redirect("/");
     }

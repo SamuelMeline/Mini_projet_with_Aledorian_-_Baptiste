@@ -14,14 +14,14 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 2 => Baptiste
 3 => Samuel
 
-* Accueil (Liste des 5 derniers événements et des 5 derniers commentaires) => 3
-* Liste des événements => 1
-* Détail d'un événement => 2
-* Création d'un événement => 3
-* Modifier un événement => 1
+* Accueil (Liste des 5 derniers événements et des 5 derniers commentaires) => 3 DONE
+* Liste des événements => 1 DONE
+* Détail d'un événement => 2 DONE
+* Création d'un événement => 3 DONE
+* Modifier un événement => 1 DONE
 * Supprimer un événement (Back-office) =>
 * Liste des commentaires d'un événement =>
-* Création d'un commentaire sur un événement => 2
+* Création d'un commentaire sur un événement => 2 
 * Suppression des commentaires (Back-office) =>
 * Création d'un back-office (interface d'administration) =>
 * Inscription =>

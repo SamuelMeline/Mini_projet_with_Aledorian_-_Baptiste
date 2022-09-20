@@ -54,7 +54,7 @@ class Event extends AbstractModel{
             'INSERT INTO Events (title, description, pictures, started_at, user_id, category_id) VALUES (?, ?, ?, ?, ?, ?)', [
                 $event['title'],
                 $event['description'],
-                $event['pictures'],
+                $event['picture'],
                 $event['started_at'],
                 1,
                 $event['category_id']
