@@ -80,9 +80,14 @@ class EventsListController extends AbstractController{
         ]);
     }
 
+<<<<<<< HEAD
     public function insertComment() : void
+=======
+    public function insertComment()
+>>>>>>> 7081e4c9a77649b15c617b971311259663e41b85
     {
         $model = new Comment();
+<<<<<<< HEAD
         $model->create([
             'content' => $_POST['content'],
             'user_id' => $_POST['user_id'],
@@ -90,6 +95,17 @@ class EventsListController extends AbstractController{
         ]);
 
         $this->redirect('/events/show?id=' . $_POST['event_id']);
+=======
+        $comments = $model->create([
+            $_POST['content'],
+            $_POST['event_id'],
+            $user->getId()
+            ]);
+        
+        $this->render('show_event.phtml', [
+            'comments' => $comments
+            ]);
+>>>>>>> 7081e4c9a77649b15c617b971311259663e41b85
     }
 
     public function comment(int $id)
@@ -101,7 +117,7 @@ class EventsListController extends AbstractController{
             'comments' => $comments
             ]);
     }
-    
+
     public function delete(): void
     {
         $user = new User();
