@@ -20,6 +20,10 @@ return [
         'App\Controllers\EventsListController',
         'create'
     ],
+    '/events/delete' => [
+        'App\Controllers\EventsListController',
+        'delete'
+    ],
     '/event' => [
         'App\Controllers\EventsListController',
         'show'

@@ -51,7 +51,7 @@ class EventsListController extends AbstractController{
                 'description' => $_POST['description'],
                 'picture' => $_POST['picture'],
                 'started_at' => $_POST['date'],
-                '1',
+                'user_id' => $user->getId(),
                 'category_id' => $_POST['category'],
             ]);
             
@@ -78,5 +78,17 @@ class EventsListController extends AbstractController{
             'event' => $event,
             'categories' => $categories
         ]);
+    }
+    public function delete(): void
+    {
+        $user = new User();
+        
+        if (! $user->isAuthenticated()) {
+            $this->redirect('/login');    
+        }
+        
+        $model = new Event();
+        $model->delete($_GET['id']);
+        $this->redirect('/admin');
     }
 } 
