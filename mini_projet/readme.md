@@ -23,8 +23,8 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 * Liste des commentaires d'un événement =>
 * Création d'un commentaire sur un événement => 2 
 * Suppression des commentaires (Back-office) =>
-* Création d'un back-office (interface d'administration) =>
-* Inscription =>
+* Création d'un back-office (interface d'administration) => page DONE (affichage des événements + commentaires)
+* Inscription => 3
 * Connexion =>
 * [BONUS] Inscription à un événement =>
 * [BONUS] Affichage des événements proche de ma position (géolocalisation) =>
