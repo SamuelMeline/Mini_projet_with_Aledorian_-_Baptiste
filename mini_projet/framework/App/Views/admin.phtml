@@ -30,7 +30,7 @@
                                 <td><?= htmlspecialchars($event['created_at']) ?></td>
                                 <td>
                                     <a href="<?= url('/edit?id=' . $event['id']) ?>">Modifier</a> | 
-                                    <a href="<?= url('/delete?id=' . $event['id']) ?>">Supprimer</a>
+                                    <a href="<?= url('/events/delete?id=' . $event['id']) ?>">Supprimer</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

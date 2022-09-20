@@ -28,7 +28,8 @@ class AdminController extends AbstractController
                 'comments' => $comments  
             ]);
         }
-
+        else{
             $this->redirect('/login');
         }
+    }
 }
