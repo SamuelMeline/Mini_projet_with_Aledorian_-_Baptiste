@@ -12,7 +12,7 @@ class AdminController extends AbstractController
     public function index(): void
     {
 
-        $admin = new User;
+        $user = new User;
 
         // Récupérer la liste des articles
         $model = new Event();
@@ -32,4 +32,3 @@ class AdminController extends AbstractController
             $this->redirect('/login');
         }
     }
-}
