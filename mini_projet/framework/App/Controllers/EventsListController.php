@@ -24,8 +24,12 @@ class EventsListController extends AbstractController{
         $model = new Event();
         $showEvent = $model->find($_GET['id']);
 
+        $model = new Comment();
+        $comments = $model->findByPost($_GET['id']);
+
         $this->render('show_event.phtml',[
-            'event' => $showEvent
+            'event' => $showEvent,
+            'comments' => $comments
         ]);
     }
 
@@ -84,15 +88,14 @@ class EventsListController extends AbstractController{
     {
         $user = new User;
         $model = new Comment();
-        $comments = $model->create([
-            $_POST['content'],
-            $_POST['event_id'],
-            $user->getId()
-            ]);
+        $comment = $model->create([            
+            'content' => $_POST['content'],
+            'event_id' => $_POST['event_id'],
+            'user_id' => $user->getId()]
+        );
+
         
-        $this->render('show_event.phtml', [
-            'comments' => $comments
-            ]);
+        $this->redirect("/event?id=".$_POST['event_id']);
     }
 
     public function comment(int $id)
