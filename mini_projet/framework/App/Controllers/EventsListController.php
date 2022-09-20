@@ -65,7 +65,6 @@ class EventsListController extends AbstractController{
 
         $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
 
-
         $this->redirect("/");
     }
 
