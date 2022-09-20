@@ -20,8 +20,8 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 * Création d'un événement => 3 DONE
 * Modifier un événement => 1 DONE
 * Supprimer un événement (Back-office) => DONE
-* Liste des commentaires d'un événement => 
-* Création d'un commentaire sur un événement => 2 
+* Liste des commentaires d'un événement => DONE
+* Création d'un commentaire sur un événement => DONE
 * Suppression des commentaires (Back-office) => 
 * Création d'un back-office (interface d'administration) => page DONE (affichage des événements + commentaires)
 * Inscription => DONE
