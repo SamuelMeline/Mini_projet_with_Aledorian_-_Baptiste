@@ -96,6 +96,7 @@ class EventsListController extends AbstractController{
             'event_id' => $_POST['event_id'],
             'user_id' => $user->getId()]
         );
+
         
         $this->redirect("/event?id=".$_POST['event_id']);
     }
@@ -109,7 +110,7 @@ class EventsListController extends AbstractController{
             'comments' => $comments
             ]);
     }
-    
+
     public function delete(): void
     {
         $user = new User();
