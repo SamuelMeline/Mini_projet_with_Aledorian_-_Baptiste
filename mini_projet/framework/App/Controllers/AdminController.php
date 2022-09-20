@@ -11,8 +11,8 @@ class AdminController extends AbstractController
 {
     public function index(): void
     {
-        $model = new User();
-        $user = $model;
+
+        $admin = new User;
 
         // Récupérer la liste des articles
         $model = new Event();
@@ -20,7 +20,7 @@ class AdminController extends AbstractController
 
         $model = new Comment();
         $comments = $model->findAll();
-        
+
         // Afficher le template
         if($user->getUsername() === "admin"){
             $this->render('admin.phtml', [
@@ -28,7 +28,7 @@ class AdminController extends AbstractController
                 'comments' => $comments  
             ]);
         }
-        else{
+
             $this->redirect('/login');
         }
     }

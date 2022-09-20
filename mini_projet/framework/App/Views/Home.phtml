@@ -1,5 +1,11 @@
 <h1>Accueil</h1>
 
+<?php if($user->isAuthenticated()): ?>
+<nav>
+    <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
+</nav>
+<?php endif ?>
+
 <div class="row">
     <div class="col-5">
         <h2>Evenements</h2>

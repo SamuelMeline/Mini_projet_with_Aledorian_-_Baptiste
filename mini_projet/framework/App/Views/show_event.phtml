@@ -2,7 +2,10 @@
 
 <article class="border-bottom py-3 mb-2">
     <header class="my-2">
+        
+        <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']): ?>
         <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
+        <?php endif ?>
         <h2><?= htmlspecialchars($event['title']) ?></h2>
         <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
     </header>
@@ -10,8 +13,12 @@
     <p><?= htmlspecialchars($event['description']) ?></p>
 </article>
 
+
+
 <section>
     <h2>Espace commentaires</h2>
+    
+    <?php if($user->isAuthenticated()): ?> 
     <form method="post">
         <fieldset>
             <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
@@ -25,13 +32,14 @@
             </div>
         </fieldset>
     </form>
+    <?php endif ?>
     
     <ul class="list-unstyled border-top py-2 my-2">
         <?php foreach ($comments as $comment): ?>
             <li class="mb-3">
                 <article>
                     <header>
-                        <small>Rédigé le <?= htmlspecialchars( $comment['created_at']) ?></small>
+                        <small>Rédigé le <?= $comment['created_at'] ?> par <?= $comment['username'] ?></small>
                     </header>
                     <?= htmlspecialchars($comment['content']) ?>
                 </article>
