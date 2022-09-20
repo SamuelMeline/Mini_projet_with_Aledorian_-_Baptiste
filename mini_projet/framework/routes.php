@@ -61,6 +61,9 @@ return [
     '/comments/delete' => [
         'App\Controllers\EventsListController',
         'deleteComment'
-    ]    
-
+    ],    
+    '/event/registration' => [
+        'App\Controllers\EventsListController',
+        'registration'
+    ]
 ];

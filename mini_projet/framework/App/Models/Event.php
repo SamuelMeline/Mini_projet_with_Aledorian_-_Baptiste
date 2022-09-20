@@ -20,7 +20,8 @@ class Event extends AbstractModel{
     public function find(int $id): ? array
     {
         return $this->db->getOne(
-            'SELECT e.title,e.id, e.description, e.pictures, e.created_at, e.started_at, e.category_id, u.username, c.name
+
+            'SELECT e.user_id, e.title,e.id, e.description, e.pictures, e.created_at, e.started_at, e.category_id, u.username, c.name
             FROM Events e
             INNER JOIN Users u ON e.user_id = u.id
             INNER JOIN Categories c ON e.category_id = c.id
@@ -66,6 +67,16 @@ class Event extends AbstractModel{
     {
         $this->db->execute(
             'DELETE FROM Events WHERE id = ?', [$id]
+        );
+    }
+
+    public function registration(array $data) : void
+    {
+        $this->db->execute(
+            'INSERT INTO Registration (user_id, event_id) VALUES (?, ?)',[
+                $data['user_id'],
+                $data['event_id']
+            ]
         );
     }
 }

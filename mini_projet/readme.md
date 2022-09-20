@@ -41,10 +41,10 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 
 ## Gestion des droits
 
-* L'interface d'administration n'est accessible que pour l'utilisateur "admin"
-* La création d'un événement, d'un commentaire, l'inscription à un événement ne peuvent être faits que par un utilisateur connecté
-* La modification d'un événement ne peut être fait que par l'auteur de l'événement ou l'administrateur
-* La suppression d'événements et de commentaires ne peuvent être faits que par l'administrateur
+* L'interface d'administration n'est accessible que pour l'utilisateur "admin" DONE
+* La création d'un événement, d'un commentaire, l'inscription à un événement ne peuvent être faits que par un utilisateur connecté  
+* La modification d'un événement ne peut être fait que par l'auteur de l'événement ou l'administrateur DONE
+* La suppression d'événements et de commentaires ne peuvent être faits que par l'administrateur DONE
 
 ## Technique
 

@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Comment;
 use App\Models\Category;
 use Libraries\Auth\User;
+
 class EventsListController extends AbstractController{
 
     public function index() : void
@@ -21,16 +22,23 @@ class EventsListController extends AbstractController{
 
     public function show(): void
     {
+        $user = new User();
+        
         $model = new Event();
         $showEvent = $model->find($_GET['id']);
 
         $model = new Comment();
         $comments = $model->findByPost($_GET['id']);
-
+        
+        
         $this->render('show_event.phtml',[
-            'event' => $showEvent,
-            'comments' => $comments
+        'event' => $showEvent,
+        'comments' => $comments,
+        'user' => $user
         ]);
+        
+
+        
     }
 
     public function create(): void
@@ -72,16 +80,25 @@ class EventsListController extends AbstractController{
 
     public function editForm() : void
     {
+        $user = new User;
+        
         $model = new Event();
         $event = $model->find($_GET['id']);
 
         $model = new Category;
         $categories = $model->findAll();
-
-        $this->render('editForm.phtml', [
+        
+        if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']) {
+            
+            $this->render('editForm.phtml', [
             'event' => $event,
             'categories' => $categories
-        ]);
+            ]);
+        }
+        else {
+            
+            $this->redirect('/login');
+        }    
     }
 
     public function insertComment()
@@ -102,13 +119,14 @@ class EventsListController extends AbstractController{
     {
         $user = new User();
         
-        if (! $user->isAuthenticated()) {
-            $this->redirect('/login');    
+        if($user->getUsername() === 'admin'){
+            $model = new Comment();
+            $model->delete($_GET['id']);
+            $this->redirect('/admin');
         }
-        
-        $model = new Comment();
-        $model->delete($_GET['id']);
-        $this->redirect('/admin');
+        else{
+            $this->redirect('/login'); 
+        }
 
     }
 
@@ -126,13 +144,29 @@ class EventsListController extends AbstractController{
     {
         $user = new User();
         
-        if (! $user->isAuthenticated()) {
+        if($user->getUsername() === 'admin')
+        {
+            $model = new Event();
+            $model->delete($_GET['id']);
+            $this->redirect('/admin');
+        }
+
+        else 
+        {
             $this->redirect('/login');    
         }
-        
-        $model = new Event();
-        $model->delete($_GET['id']);
-        $this->redirect('/admin');
+    }
 
+    public function registration(): void{
+        $user = new User();
+
+        if($user->isAuthenticated()){
+            $model = new Event();
+            $model->registration([
+                'user_id' => $user->getId(),
+                'event_id' => $_GET['id']
+            ]);
+            $this->redirect("/");
+        }
     }
 } 
