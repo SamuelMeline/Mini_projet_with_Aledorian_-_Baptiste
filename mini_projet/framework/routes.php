@@ -35,5 +35,17 @@ return [
     '/edit' => [
         'App\Controllers\EventsListController',
         'editForm'
+    ],
+    '/register' => [
+        'App\Controllers\UserController',
+        'register'
+    ],
+    '/login' => [
+        'App\Controllers\UserController',
+        'login'
+    ],
+    '/logout' => [
+        'App\Controllers\UserController',
+        'logout'
     ],    
 ];
