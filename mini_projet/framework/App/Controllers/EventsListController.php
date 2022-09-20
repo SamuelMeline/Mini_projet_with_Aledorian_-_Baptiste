@@ -80,15 +80,15 @@ class EventsListController extends AbstractController{
         ]);
     }
 
-    public function insertComment(int $id)
+    public function insertComment()
     {
         $user = new User;
         $model = new Comment();
-        $comments = $model->create(
+        $comments = $model->create([
             $_POST['content'],
             $_POST['event_id'],
             $user->getId()
-            );
+            ]);
         
         $this->render('show_event.phtml', [
             'comments' => $comments
@@ -104,7 +104,7 @@ class EventsListController extends AbstractController{
             'comments' => $comments
             ]);
     }
-    
+
     public function delete(): void
     {
         $user = new User();
