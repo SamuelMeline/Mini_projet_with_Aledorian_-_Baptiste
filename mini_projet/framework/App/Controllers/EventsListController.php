@@ -155,6 +155,18 @@ class EventsListController extends AbstractController{
         {
             $this->redirect('/login');    
         }
+    }
 
+    public function registration(): void{
+        $user = new User();
+
+        if($user->isAuthenticated()){
+            $model = new Event();
+            $model->registration([
+                'user_id' => $user->getId(),
+                'event_id' => $_GET['id']
+            ]);
+            $this->redirect("/");
+        }
     }
 } 

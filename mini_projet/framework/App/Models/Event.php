@@ -69,4 +69,14 @@ class Event extends AbstractModel{
             'DELETE FROM Events WHERE id = ?', [$id]
         );
     }
+
+    public function registration(array $data) : void
+    {
+        $this->db->execute(
+            'INSERT INTO Registration (user_id, event_id) VALUES (?, ?)',[
+                $data['user_id'],
+                $data['event_id']
+            ]
+        );
+    }
 }
