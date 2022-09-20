@@ -42,7 +42,7 @@ class Comment extends AbstractModel
     public function create(array $comment): void
     {
         $this->db->execute(
-            'INSERT INTO comments (nickname, content, created_at, post_id) VALUES (?, ?, NOW(), ?)', [
+            'INSERT INTO Comments (nickname, content, created_at, post_id) VALUES (?, ?, NOW(), ?)', [
             $comment['nickname'],
             $comment['content'],
             $comment['post_id']
