@@ -213,21 +213,20 @@ class EventsListController extends AbstractController
 
     public function distance(): void
     {
-        function getDistanceBetweenPointsNew(float $latitude1, float $longitude1, float $latitude2, float $longitude2, $unit = 'kilometers') {
-        $theta = $longitude1 - $longitude2; 
-        // var_dump($theta);
-        $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
-        $distance = acos($distance); 
-        $distance = rad2deg($distance); 
-        $distance = $distance * 60 * 1.1515; 
-        var_dump($distance);
-        switch($unit) { 
-            case 'miles': 
-            break; 
-            case 'kilometers' : 
-            $distance = $distance * 1.609344; 
-        } 
-        return (round($distance,2)); 
+        function getDistanceBetweenPointsNew(float $latitude1, float $longitude1, float $latitude2, float $longitude2, $unit = 'miles') :float {
+
+        $earth_radius = 6372.795477598;
+
+        $delta_lat = $latitude2 - $latitude1 ;
+        $delta_lon = $longitude2 - $longitude1 ;
+
+        $a = pow(sin(deg2rad($delta_lat/2)), 2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * pow(sin(deg2rad($delta_lon/2)), 2);
+        
+        $c = 2 * asin(sqrt($a));
+
+        $distance = $earth_radius * $c;
+
+        return (round($distance, 4));
     }
 
         // récupére tout les events
@@ -245,10 +244,7 @@ class EventsListController extends AbstractController
 
             // calcul la distance entre ma position et celle des evenement en km
 
-            $distance = getDistanceBetweenPointsNew(floatval($_POST['lat']), floatval($_POST['long']), floatval($position[0]), floatval($position[1]), $unit = 'kilometers');
-
-            // var_dump($distance);
-
+            $distance = getDistanceBetweenPointsNew(floatval($_POST['lat']), floatval($_POST['long']), floatval($position[1]), floatval($position[0]), $unit = 'kilometers');
 
             if($distance < 50){
                 $events[] = $event;
