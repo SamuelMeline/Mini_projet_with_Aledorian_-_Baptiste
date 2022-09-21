@@ -1,53 +1,72 @@
 <div class="row">
     <h1 class='col-8'>Event</h1>
-    <a href="<?= url("/event/registration"."?id=".$event['id']) ?>" class="col-4"><button class="btn btn-primary">Je participe</button></a>
-</div>
+    <!-- <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#exampleModal">Je participe</button> -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Participer à l'événement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Voulez-vous vraiment participer à l'événement ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                    <button type="button" class="btn btn-success">Oui</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
-<article class="border-bottom py-3 mb-2">
-    <header class="my-2">
-        
-        <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']): ?>
-        <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
+    <article class="border-bottom py-3 mb-2">
+        <header class="my-2">
+
+            <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']) : ?>
+                <a href="<?= url("/edit?id=" . $_GET['id']) ?>">edit</a>
+            <?php endif ?>
+            <h2><?= htmlspecialchars($event['title']) ?></h2>
+            <img src="../<?= htmlspecialchars($event['pictures']) ?>" alt="">
+            <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
+        </header>
+        <h3><?= htmlspecialchars($event['started_at']) ?></h3>
+        <p><?= htmlspecialchars($event['description']) ?></p>
+    </article>
+
+
+
+    <section>
+        <h2>Espace commentaires</h2>
+
+        <?php if ($user->isAuthenticated()) : ?>
+            <form method="post">
+                <fieldset>
+                    <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                    <legend>Ajouter un commentaire</legend>
+                    <div class="form-group">
+                        <label for="content">Commentaire</label>
+                        <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="mt-2">
+                        <button class="btn btn-primary" formaction="<?= url('/event/comment') ?>">Ajouter</button>
+                    </div>
+                </fieldset>
+            </form>
         <?php endif ?>
-        <h2><?= htmlspecialchars($event['title']) ?></h2>
-        <img src="../<?= htmlspecialchars($event['pictures']) ?>" alt="">
-        <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
-    </header>
-    <h3><?= htmlspecialchars($event['started_at']) ?></h3>
-    <p><?= htmlspecialchars($event['description']) ?></p>
-</article>
 
-
-
-<section>
-    <h2>Espace commentaires</h2>
-    
-    <?php if($user->isAuthenticated()): ?> 
-    <form method="post">
-        <fieldset>
-            <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-            <legend>Ajouter un commentaire</legend>
-            <div class="form-group">
-                <label for="content">Commentaire</label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
-            </div>
-            <div class="mt-2">
-                <button class="btn btn-primary" formaction="<?= url('/event/comment') ?>">Ajouter</button>
-            </div>
-        </fieldset>
-    </form>
-    <?php endif ?>
-    
-    <ul class="list-unstyled border-top py-2 my-2">
-        <?php foreach ($comments as $comment): ?>
-            <li class="mb-3">
-                <article>
-                    <header>
-                        <small>Rédigé le <?= $comment['created_at'] ?> par <?= $comment['username'] ?></small>
-                    </header>
-                    <?= htmlspecialchars($comment['content']) ?>
-                </article>
-            </li>
-        <?php endforeach ?>
-    </ul>
-</section>
+        <ul class="list-unstyled border-top py-2 my-2">
+            <?php foreach ($comments as $comment) : ?>
+                <li class="mb-3">
+                    <article>
+                        <header>
+                            <small>Rédigé le <?= $comment['created_at'] ?> par <?= $comment['username'] ?></small>
+                        </header>
+                        <?= htmlspecialchars($comment['content']) ?>
+                    </article>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </section>
+   
