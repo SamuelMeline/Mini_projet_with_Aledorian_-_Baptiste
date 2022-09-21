@@ -69,5 +69,9 @@ return [
     '/eventNear' => [
         'App\Controllers\EventsListController',
         'distance'
+    ],
+    '/eventProxi' => [
+        'App\Controllers\EventsListController',
+        'eventProxi'
     ]
 ];
