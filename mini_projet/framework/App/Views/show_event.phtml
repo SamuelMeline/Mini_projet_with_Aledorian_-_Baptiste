@@ -10,7 +10,7 @@
         <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
         <?php endif ?>
         <h2><?= htmlspecialchars($event['title']) ?></h2>
-        <img src="<?= htmlspecialchars($event['pictures']) ?>" alt="">
+        <img src="../<?= htmlspecialchars($event['pictures']) ?>" alt="">
         <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
     </header>
     <h3><?= htmlspecialchars($event['started_at']) ?></h3>
