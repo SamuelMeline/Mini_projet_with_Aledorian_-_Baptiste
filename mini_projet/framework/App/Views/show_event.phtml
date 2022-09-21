@@ -1,25 +1,28 @@
 <div class="row">
     <h1 class='col-8'>Event</h1>
-    <!-- <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#exampleModal">Je participe</button> -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Je participe
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Participer à l'événement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Participer à l'événenement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment participer à l'événement ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
-                    <button type="button" class="btn btn-success">Oui</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                    <a href="<?= url("/event/registration" . "?id=" . $event['id']) ?>"><button class="btn btn-success">Oui</button></a>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <article class="border-bottom py-3 mb-2">
         <header class="my-2">
@@ -28,14 +31,12 @@
                 <a href="<?= url("/edit?id=" . $_GET['id']) ?>">edit</a>
             <?php endif ?>
             <h2><?= htmlspecialchars($event['title']) ?></h2>
-            <img src="../<?= htmlspecialchars($event['pictures']) ?>" alt="">
+            <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
             <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
         </header>
         <h3><?= htmlspecialchars($event['started_at']) ?></h3>
         <p><?= htmlspecialchars($event['description']) ?></p>
     </article>
-
-
 
     <section>
         <h2>Espace commentaires</h2>
@@ -69,4 +70,3 @@
             <?php endforeach ?>
         </ul>
     </section>
-   
