@@ -1,47 +1,48 @@
 <h1 class="home-title">Accueil</h1>
 
-<div class="row justify-content-center mb-5 ">
-    <div id="map" style="height: 400px" class='col-5'></div>
-        <form method='POST' class = "col-6" action="<?= url("/eventNear") ?>" action="<?= url("/eventProxi") ?>">
-        <label for="lat"></label>
-        <input type="hidden" id="lat" name="lat">
-    
-        <label for="long"></label>
-        <input type="hidden" id="long" name="long">
-    
-        <button class="btn btn-primary" id="btnPos">Voir les événements a proximité</button>
-    </form>
-</div>
+<div class="homepage">
+    <div class="row justify-content-center mb-5 ">
+        <div id="map" style="height: 400px" class='col-5'></div>
+        <form method='POST' class="col-6" action="<?= url("/eventNear") ?>" action="<?= url("/eventProxi") ?>">
+            <label for="lat"></label>
+            <input type="hidden" id="lat" name="lat">
 
-<?php if($user->isAuthenticated()): ?>
-<div class="row">
-    <nav class = "col-6">
-        <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
-    </nav>
-</div>
-<?php endif ?>
+            <label for="long"></label>
+            <input type="hidden" id="long" name="long">
 
-<div class="row">
-    <div class="col-5">
-        <h2>Evenements</h2>
-        <ul class="list-unstyled">
-            <?php foreach ($events as $event): ?>
-                <li>
-                    <article class="my-2 event">
-                        <header class="border-bottom py-2">
-                            <h2><a href="<?=url("/event?id=".$event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
-                            <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
-                            <span hidden><?= htmlspecialchars($event['position']) ?></span>
-                        </header>
-                        <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=".$event['id']) ?>">voir la suite</a>)
-                    </article>
-    
-                </li>
-            <?php endforeach ?>
-        </ul>
+            <button class="btn btn-primary" id="btnPos">Voir les événements a proximité</button>
+        </form>
     </div>
-    
-    <div class="col-5 ms-5">
+
+    <?php if ($user->isAuthenticated()) : ?>
+        <div class="row">
+            <nav class="col-6">
+                <a href="<?= url('/events/create') ?>" class="btn btn-primary" id="btnleft">Ajouter un événement</a>
+            </nav>
+        </div>
+    <?php endif ?>
+
+    <div class="row">
+        <div class="col-5">
+            <h2>Evenements</h2>
+            <ul class="list-unstyled">
+                <?php foreach ($events as $event) : ?>
+                    <li>
+                        <article class="my-2 event">
+                            <header class="border-bottom py-2">
+                                <h2><a href="<?= url("/event?id=" . $event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
+                                <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
+                                <span hidden><?= htmlspecialchars($event['position']) ?></span>
+                            </header>
+                            <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=" . $event['id']) ?>">voir la suite</a>)
+                        </article>
+
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+
+        <div class="col-5 ms-5">
 
             <h2>Commentaires</h2>
             <ul class="list-unstyled">
@@ -60,4 +61,33 @@
             </ul>
         </div>
     </div>
-    </div>
+</div>
+</div>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    .homepage {
+        justify-content: center;
+        margin-left: 10%;
+        margin-top: 15px;
+    }
+
+    #btnPos {
+        margin-top: 25%;
+        margin-left: 5%;
+    }
+
+    #btnleft {
+        margin-bottom: 5%;
+    }
+    .btn {
+        margin-top: 5%;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+</style>

@@ -131,15 +131,20 @@ class EventsListController extends AbstractController
         $model = new Category;
         $categories = $model->findAll();
 
-        if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']) {
-
-            $this->render('editForm.phtml', [
-                'event' => $event,
-                'categories' => $categories
-            ]);
-        } else {
-            $this->redirect('/login');
+        if(! isset($event)){
+            $this->render('errors/404.phtml');
+        }else{
+            if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']) {
+    
+                $this->render('editForm.phtml', [
+                    'event' => $event,
+                    'categories' => $categories
+                ]);
+            } else {
+                $this->redirect('/login');
+            }
         }
+
     }
 
     public function insertComment()

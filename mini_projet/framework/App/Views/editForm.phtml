@@ -1,29 +1,19 @@
-<form method='post'>
+<form method="post" enctype="multipart/form-data">
 
     <input type="hidden" name = "id" value = "<?= $_GET['id'] ?>">
-
+    
     <div class="form-group">
         <label for="title" class='form-label'>Titre</label>
         <input class="form-control" type="text" name="title" value="<?=$event['title']?>"/>
     </div>
-    
+
     <div class="form-group">
-        <label for="content" class='form-label'>Article</label>
+        <label for="description" class='form-label'>Description</label>
         <textarea name="description" class="form-control"><?=$event['description']?></textarea>
     </div>
-
+    
     <div class="form-group">
-        <label for="start">Date de début</label>
-        <input type="datetime-local" name = "start">
-    </div>
-
-    <div class="form-group">
-        <label for="pictures"></label>
-        <input type="text" name="pictures" value="<?=$event['pictures'] ?>" />
-    </div>
-        
-    <div class="form-group">
-        <select name="category" id="">
+        <select name="category" id="" class="form-control">
         <?php foreach ($categories as $category):?>
                     <?php if ($category['id'] == $event['category_id']): ?>
                         <option selected value="<?= $category['id'] ?>"><?= ucfirst($category['name']) ?></option>
@@ -33,7 +23,25 @@
         
         <?php endforeach ?>
         
-        </select>
+        </select> 
     </div>
-<button class="btn btn-primary" formaction="<?=url('/editEvent')?>">Editer l'événement</button>    
+
+    <div class="form-group">
+        <label for="picture">Votre fichier</label>
+        <input type="file" name="picture" id="picture" multiple class="form-control" value= <?= $event['pictures'] ?> disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="position">Position</label>
+        <input type="text" name="position" id="position" class="form-control" disabled>
+    </div>                    
+
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="datetime-local" name="date" id="date" class="form-control" value = <?= $event['started_at'] ?>>
+    </div>   
+
+    <div class="mt-2">
+        <button class="btn btn-primary" formaction="<?=url('/editEvent')?>">Modifier</button>
+    </div>
 </form>

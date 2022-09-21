@@ -2,9 +2,6 @@
 
         const lat = document.querySelector("#lat");
         const long = document.querySelector("#long");  
-
-        console.log(lat);
-        console.log(long);
         
         const btnPos = document.querySelector("#btnPos");
         
@@ -20,12 +17,12 @@
 
         let events = document.querySelectorAll(".event span");
         
-        console.log(events.innerText);
-        
+        //Afichage d'une map interactive centrée sur la France
         let map = L.map('map').setView([46.603354, 1.8883335], 5);  
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         
+        //recupération des position pour affichage sur la map
         for (let pos of events){
             position = (pos.innerText.split(" "))
             L.marker([position[1], position[0]]).addTo(map)
