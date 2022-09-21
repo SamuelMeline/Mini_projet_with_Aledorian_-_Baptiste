@@ -41,7 +41,7 @@ class Event extends AbstractModel{
     public function findx(int $id): ? array
     {
         return $this->db->getAll(
-            'SELECT e.title, e.description, e.pictures, e.created_at, e.started_at, u.username, c.name, e.id
+            'SELECT e.title, e.description, e.pictures, e.created_at, e.started_at, u.username, c.name, e.id, e.position
             FROM Events e
             INNER JOIN Users u ON e.user_id = u.id
             INNER JOIN Categories c ON e.category_id = c.id

@@ -213,21 +213,22 @@ class EventsListController extends AbstractController
 
     public function distance(): void
     {
-        function getDistanceBetweenPointsNew(float $latitude1, float $longitude1, float $latitude2, float $longitude2, $unit = 'miles') :float {
+        function getDistanceBetweenPointsNew(float $latitude1, float $longitude1, float $latitude2, float $longitude2, $unit = 'miles') :float 
+        {
 
-        $earth_radius = 6372.795477598;
+            $earth_radius = 6372.795477598;
 
-        $delta_lat = $latitude2 - $latitude1 ;
-        $delta_lon = $longitude2 - $longitude1 ;
+            $delta_lat = $latitude2 - $latitude1 ;
+            $delta_lon = $longitude2 - $longitude1 ;
 
-        $a = pow(sin(deg2rad($delta_lat/2)), 2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * pow(sin(deg2rad($delta_lon/2)), 2);
-        
-        $c = 2 * asin(sqrt($a));
+            $a = pow(sin(deg2rad($delta_lat/2)), 2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * pow(sin(deg2rad($delta_lon/2)), 2);
+            
+            $c = 2 * asin(sqrt($a));
 
-        $distance = $earth_radius * $c;
+            $distance = $earth_radius * $c;
 
-        return (round($distance, 4));
-    }
+            return (round($distance, 4));
+        }
 
         // récupére tout les events
 

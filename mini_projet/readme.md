@@ -15,20 +15,35 @@ Réalisation d'un site d'événements (création et affichage d'événements).
 3 => Samuel
 
 * Accueil (Liste des 5 derniers événements et des 5 derniers commentaires) => DONE
+
 * Liste des événements => DONE
+
 * Détail d'un événement => DONE
+
 * Création d'un événement => DONE
+
 * Modifier un événement => DONE
+
 * Supprimer un événement (Back-office) => DONE
+
 * Liste des commentaires d'un événement => DONE
+
 * Création d'un commentaire sur un événement => DONE
+
 * Suppression des commentaires (Back-office) => DONE
+
 * Création d'un back-office (interface d'administration) => DONE
+
 * Inscription => DONE
+
 * Connexion => DONE
+
 * [BONUS] Inscription à un événement => DONE
-* [BONUS] Affichage des événements proche de ma position (géolocalisation) => 
-* [BONUS++] Accueil -> affichage de tous les événements sur une carte (style airbnb) => 
+
+* [BONUS] Affichage des événements proche de ma position (géolocalisation) DONE
+
+
+* [BONUS++] Accueil -> affichage de tous les événements sur une carte (style airbnb) => leaflet 
 
 ## Base de données
 
