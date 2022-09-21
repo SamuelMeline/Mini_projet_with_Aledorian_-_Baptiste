@@ -1,9 +1,21 @@
 <h1>Accueil</h1>
 
 <?php if($user->isAuthenticated()): ?>
-<nav>
-    <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
-</nav>
+<div class="row">
+    <nav class = "col-6">
+        <a href="<?= url('/events/create') ?>" class="btn btn-primary">Ajouter un événement</a>
+    </nav>
+    
+    <form method='POST' class = "col-6" action="<?= url("/eventNear") ?>">
+        <label for="lat"></label>
+        <input type="hidden" id="lat" name="lat">
+    
+        <label for="long"></label>
+        <input type="hidden" id="long" name="long">
+    
+        <button class="btn btn-primary">Voir les événement a proximité</button>
+    </form>
+</div>
 <?php endif ?>
 
 <div class="row">
@@ -26,6 +38,7 @@
     </div>
     
     <div class="col-5 ms-5">
+
         <h2>Commentaires</h2>
         <ul class="list-unstyled">
             <?php foreach ($comments as $comment): ?>

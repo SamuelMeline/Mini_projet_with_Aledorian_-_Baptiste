@@ -1,20 +1,48 @@
-<div class="row">
+<div class="row justify-content-between">
     <h1 class='col-8'>Event</h1>
-    <a href="<?= url("/event/registration"."?id=".$event['id']) ?>" class="col-4"><button class="btn btn-primary">Je participe</button></a>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-2 align-self-center me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Je participe
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes vous sur de vouloir participer ? 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                <a href="<?= url("/event/registration"."?id=".$event['id']) ?>" ><button class="btn btn-success">Oui</button></a>
+            </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <article class="border-bottom py-3 mb-2">
-    <header class="my-2">
-        
-        <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']): ?>
-        <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
-        <?php endif ?>
-        <h2><?= htmlspecialchars($event['title']) ?></h2>
-        <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
-        <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
-    </header>
-    <h3><?= htmlspecialchars($event['started_at']) ?></h3>
-    <p><?= htmlspecialchars($event['description']) ?></p>
+    <div class="row justify-content-center">
+        <header class="my-2">
+            <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']): ?>
+            <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
+            <?php endif ?>
+            <h2><?= htmlspecialchars($event['title']) ?></h2>
+            <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
+        </header>
+            <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
+
+            <div class="row">
+                <p><?= htmlspecialchars($event['description']) ?></p>
+                <p>Début de l'événement <?= htmlspecialchars($event['started_at']) ?></p>
+            </div>
+    </div>
 </article>
 
 <section>
@@ -50,26 +78,6 @@
     </ul>
 </section>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>
+<?php 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        </div>
-    </div>
-</div>
+?>

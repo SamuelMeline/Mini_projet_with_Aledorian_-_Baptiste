@@ -58,6 +58,21 @@ class EventsListController extends AbstractController
             ]);
         } else {
 
+            // ON RECUPERE LA POSITION VIA L'INPUT
+
+            $position = $_POST['position'];
+
+            // FAIT LA REQUETE VERS L'API
+
+            $results = json_decode(file_get_contents('https://api-adresse.data.gouv.fr/search/?q='.$position), true);
+
+            // ON STOCK LES COORDONNEES DANS DES VARIABLES
+
+            $longitude = $results["features"][0]["geometry"]["coordinates"][0]; 
+            $latitude = $results["features"][0]["geometry"]["coordinates"][1];
+
+            $position = $longitude . " " . $latitude;
+
             if (!empty($_FILES)) {
 
                 
@@ -88,7 +103,7 @@ class EventsListController extends AbstractController
                     'title' => $_POST['title'],
                     'description' => $_POST['description'],
                     'picture' => $path,
-                    'position' => $_POST['position'],
+                    'position' => $position,
                     'started_at' => $_POST['date'],
                     'user_id' => $user->getId(),
                     'category_id' => $_POST['category'],
@@ -195,4 +210,6 @@ class EventsListController extends AbstractController
             $this->redirect("/login");
         }
     }
+
+    
 }

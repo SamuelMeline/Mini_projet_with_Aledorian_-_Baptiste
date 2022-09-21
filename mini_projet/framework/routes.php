@@ -65,5 +65,9 @@ return [
     '/event/registration' => [
         'App\Controllers\EventsListController',
         'registration'
+    ],
+    '/eventNear' => [
+        'App\Controllers\EventsListController',
+        'distance'
     ]
 ];
