@@ -82,9 +82,6 @@ class EventsListController extends AbstractController
                 
                 // Déplacer le fichier depuis son dossier temporaire vers le dossier img/
                 move_uploaded_file($_FILES['picture']['tmp_name'], $path);
-                
-                // header('Location: index.php');
-                // exit();
 
                 $model = new Event();
                 $model->create([
