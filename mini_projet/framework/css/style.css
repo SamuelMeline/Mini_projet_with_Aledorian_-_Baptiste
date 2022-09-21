@@ -1,3 +1,26 @@
 .event-list {
     text-align: center;
 }
+
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+.homepage {
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 15px;
+}
+
+#btnleft{
+    margin-left: 20%;
+}
+
+.btn {
+    margin-top: 5%;
+}
+
+p {
+    margin-top: 10px;
+}
