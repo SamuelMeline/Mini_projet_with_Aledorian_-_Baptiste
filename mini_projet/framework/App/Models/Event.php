@@ -52,10 +52,11 @@ class Event extends AbstractModel{
     public function create(array $event): void
     {
         $this->db->execute(
-            'INSERT INTO Events (title, description, pictures, started_at, user_id, category_id) VALUES (?, ?, ?, ?, ?, ?)', [
+            'INSERT INTO Events (title, description, pictures, position, started_at, user_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)', [
                 $event['title'],
                 $event['description'],
                 $event['picture'],
+                $event['position'],
                 $event['started_at'],
                 $event['user_id'],
                 $event['category_id']
