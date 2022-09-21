@@ -10,14 +10,12 @@
         <a href="<?= url("/edit?id=".$_GET['id']) ?>">edit</a>
         <?php endif ?>
         <h2><?= htmlspecialchars($event['title']) ?></h2>
-        <img src="../<?= htmlspecialchars($event['pictures']) ?>" alt="">
+        <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
         <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
     </header>
     <h3><?= htmlspecialchars($event['started_at']) ?></h3>
     <p><?= htmlspecialchars($event['description']) ?></p>
 </article>
-
-
 
 <section>
     <h2>Espace commentaires</h2>
@@ -51,3 +49,27 @@
         <?php endforeach ?>
     </ul>
 </section>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+</div>
