@@ -1,10 +1,11 @@
-<h1>Liste des évenements</h1>
+<div class="event-list">
+    <h1>Liste des évenements</h1>
+    <?php foreach($events as $event) : ?>   
 
-<?php foreach($events as $event) : ?>   
+        <h2><?= htmlspecialchars($event['title']) ?> aura lieu le <?= htmlspecialchars($event['started_at']) ?></h2>
+        <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
+        <p><?= htmlspecialchars($event['description']) ?></p>
+        <sub>crée le : <?= htmlspecialchars($event['created_at']) ?> par <?= htmlspecialchars($event['username']) ?></sub>
 
-    <h2><?= htmlspecialchars($event['title']) ?> aura lieu le <?= htmlspecialchars($event['started_at']) ?></h2>
-    <img src="../<?= htmlspecialchars($event['pictures']) ?>" class="col-6" alt="">
-    <p><?= htmlspecialchars($event['description']) ?></p>
-    <sub>crée le : <?= htmlspecialchars($event['created_at']) ?> par <?= htmlspecialchars($event['username']) ?></sub>
-
-<?php endforeach ?>
+    <?php endforeach ?>
+</div>

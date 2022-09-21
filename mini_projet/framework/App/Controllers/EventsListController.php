@@ -109,7 +109,7 @@ class EventsListController extends AbstractController
                     'category_id' => $_POST['category'],
                 ]);
 
-                $this->redirect('/');
+                $this->redirect('');
             }
         }
     }

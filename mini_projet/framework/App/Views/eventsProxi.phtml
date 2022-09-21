@@ -1,16 +1,20 @@
-<h1>Liste des évenements à proximité</h1>
+<div class="event-list">
+    <h1>Liste des évenements à proximité</h1>
 
-<?php if(empty($events)) : ?>
-    <h3>Désolé il n'y a pas d'événenements à proximité</h3>
-<?php else : ?>
+    <?php if(empty($events)) : ?>
+    
+        <h3>Désolé il n'y a pas d'événenements à proximité</h3>
+    
+    <?php else : ?>
 
-<?php foreach($events as $event) : ?>   
+        <?php foreach($events as $event) : ?>   
 
-    <h2><?= htmlspecialchars($event['title']) ?> aura lieu le <?= htmlspecialchars($event['started_at']) ?></h2>
-    <img class="col-6" src="../<?= $event['pictures']?>" alt="">
-    <p><?= htmlspecialchars($event['description']) ?></p>
-    <sub>crée le : <?= htmlspecialchars($event['created_at']) ?> par <?= htmlspecialchars($event['username']) ?></sub>
+            <h2><?= htmlspecialchars($event['title']) ?> aura lieu le <?= htmlspecialchars($event['started_at']) ?></h2>
+            <img class="col-6" src="../<?= $event['pictures']?>" alt="">
+            <p><?= htmlspecialchars($event['description']) ?></p>
+            <sub>crée le : <?= htmlspecialchars($event['created_at']) ?> par <?= htmlspecialchars($event['username']) ?></sub>
 
-<?php endforeach ?>
+        <?php endforeach ?>
 
-<?php endif ?>
+    <?php endif ?>
+</div>

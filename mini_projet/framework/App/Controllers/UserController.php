@@ -59,7 +59,7 @@ class UserController extends AbstractController
             $session = new User();
             $session->login($user['id'], $user['username']);
             
-            $this->redirect('/');
+            $this->redirect('');
         }
     }
         
@@ -67,6 +67,6 @@ class UserController extends AbstractController
     {
         $user = new User();
         $user->logout();
-        $this->redirect('/');
+        $this->redirect('');
     }
 }
