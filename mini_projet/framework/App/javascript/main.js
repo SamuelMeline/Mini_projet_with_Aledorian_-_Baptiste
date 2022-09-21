@@ -1,15 +1,20 @@
 //get lattitude + longitude onLoad  
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log("latitude " + position.coords.latitude);
-            console.log("longitude " + position.coords.longitude);
-        }, (error) => {
-            console.error(error);
-        });
+        const lat = document.querySelector("#lat");
+        const long = document.querySelector("#long");  
 
-        const input1 = querySelector("#input1");
-        const input2 = querySelector("#input2");        
-        button.addEventListener('click', () =>{
-            input1.value = position.coords.latitude;
-            input2.value = position.coords.longitude;
-        })
+        console.log(lat);
+        console.log(long);
+        
+        const btnPos = document.querySelector("#btnPos");
+        
+        if(lat){
+            navigator.geolocation.getCurrentPosition((position) => {
+                lat.value = position.coords.latitude;
+                long.value = position.coords.longitude;
+                return position;
+            }, (error) => {
+                console.error(error);
+            });
+        }
+

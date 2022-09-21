@@ -60,7 +60,7 @@ class EventsListController extends AbstractController
 
             // ON RECUPERE LA POSITION VIA L'INPUT
 
-            $position = $_POST['position'];
+            $position = urlencode($_POST['position']);
 
             // FAIT LA REQUETE VERS L'API
 
@@ -213,12 +213,14 @@ class EventsListController extends AbstractController
 
     public function distance(): void
     {
-        function getDistanceBetweenPointsNew(int $latitude1, int $longitude1, int $latitude2, int $longitude2, $unit = 'kilometers') {
+        function getDistanceBetweenPointsNew(float $latitude1, float $longitude1, float $latitude2, float $longitude2, $unit = 'kilometers') {
         $theta = $longitude1 - $longitude2; 
+        // var_dump($theta);
         $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
         $distance = acos($distance); 
         $distance = rad2deg($distance); 
         $distance = $distance * 60 * 1.1515; 
+        var_dump($distance);
         switch($unit) { 
             case 'miles': 
             break; 
@@ -228,25 +230,44 @@ class EventsListController extends AbstractController
         return (round($distance,2)); 
     }
 
+        // récupére tout les events
+
         $model = new Event();
-        $events = $model->findAll();
+        $AllEvents = $model->findAll();
 
-        // var_dump($events);
+        // var_dump($_POST);
 
-        foreach($events as $event)
+        foreach($AllEvents as $event)
         {
-
+            // separe Longitude et Latitude de chaque events
             $position = explode(" ", $event['position']);
-        
-            var_dump($position);
 
-            getDistanceBetweenPointsNew($_POST['lat'], $_POST['long'], $position[0], $position[1], $unit = 'kilometers');
+
+            // calcul la distance entre ma position et celle des evenement en km
+
+            $distance = getDistanceBetweenPointsNew(floatval($_POST['lat']), floatval($_POST['long']), floatval($position[0]), floatval($position[1]), $unit = 'kilometers');
+
+            // var_dump($distance);
+
+
+            if($distance < 50){
+                $events[] = $event;
+            }
         }
 
-        var_dump($_POST);
+        if(isset($events))
+        {
+            $this->render("eventsProxi.phtml",[
+                "events" => $events
+            ]);
+        }
+        else{
+            $events = [];
+            $this->render("eventsProxi.phtml",[
+                "events" => $events
+            ]);
+        }
 
-        // $this->render("eventsProxi.phtml",[
-        //     "events" => $events
-        // ]);
+
     }
 }
