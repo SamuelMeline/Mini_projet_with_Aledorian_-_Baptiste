@@ -211,5 +211,42 @@ class EventsListController extends AbstractController
         }
     }
 
-    
+    public function distance(): void
+    {
+        function getDistanceBetweenPointsNew(int $latitude1, int $longitude1, int $latitude2, int $longitude2, $unit = 'kilometers') {
+        $theta = $longitude1 - $longitude2; 
+        $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+        $distance = acos($distance); 
+        $distance = rad2deg($distance); 
+        $distance = $distance * 60 * 1.1515; 
+        switch($unit) { 
+            case 'miles': 
+            break; 
+            case 'kilometers' : 
+            $distance = $distance * 1.609344; 
+        } 
+        return (round($distance,2)); 
+    }
+
+        $model = new Event();
+        $events = $model->findAll();
+
+        // var_dump($events);
+
+        foreach($events as $event)
+        {
+
+            $position = explode(" ", $event['position']);
+        
+            var_dump($position);
+
+            getDistanceBetweenPointsNew($_POST['lat'], $_POST['long'], $position[0], $position[1], $unit = 'kilometers');
+        }
+
+        var_dump($_POST);
+
+        // $this->render("eventsProxi.phtml",[
+        //     "events" => $events
+        // ]);
+    }
 }
