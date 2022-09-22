@@ -1,9 +1,11 @@
-<h1 class="home-title">Accueil</h1>
+<div class="row justify-content-center">
+    <h1 class="home-title offset-10">Accueil</h1>
+</div>
 
-<div class="homepage">
+<div class="homepage mx-5 my-5">
     <div class="row justify-content-center mb-5 ">
         <div id="map" style="height: 400px" class='col-5'></div>
-        <form method='POST' class="col-6" action="<?= url("/eventNear") ?>" action="<?= url("/eventProxi") ?>">
+        <form method='POST' class="col-3 align-self-center" action="<?= url("/eventNear") ?>" action="<?= url("/eventProxi") ?>">
             <label for="lat"></label>
             <input type="hidden" id="lat" name="lat">
 
@@ -16,7 +18,7 @@
 
     <?php if ($user->isAuthenticated()) : ?>
         <div class="row">
-            <nav class="col-6">
+            <nav class="col-6 mb-4">
                 <a href="<?= url('/events/create') ?>" class="btn btn-primary" id="btnleft">Ajouter un événement</a>
             </nav>
         </div>
@@ -63,31 +65,3 @@
     </div>
 </div>
 </div>
-
-<style>
-    h1 {
-        text-align: center;
-    }
-
-    .homepage {
-        justify-content: center;
-        margin-left: 10%;
-        margin-top: 15px;
-    }
-
-    #btnPos {
-        margin-top: 25%;
-        margin-left: 5%;
-    }
-
-    #btnleft {
-        margin-bottom: 5%;
-    }
-    .btn {
-        margin-top: 5%;
-    }
-
-    p {
-        margin-top: 10px;
-    }
-</style>
