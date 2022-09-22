@@ -30,13 +30,23 @@
             <ul class="list-unstyled">
                 <?php foreach ($events as $event) : ?>
                     <li>
-                        <article class="my-2 event">
+                        <article class="my-2">
                             <header class="border-bottom py-2">
                                 <h2><a href="<?= url("/event?id=" . $event['id'])  ?>"><?= htmlspecialchars($event['title']) ?></a></h2>
                                 <small>Rédigé dans la catégorie <?= $event['name'] ?> par <?= htmlspecialchars($event['username']) ?> le <?= $event['created_at'] ?></small>
                                 <span hidden><?= htmlspecialchars($event['position']) ?></span>
                             </header>
                             <?= nl2br(htmlspecialchars(substr($event['description'], 0, 300))) ?>[...] (<a href="<?= url("/event?id=" . $event['id']) ?>">voir la suite</a>)
+                        </article>
+
+                    </li>
+                <?php endforeach ?>
+
+                <?php foreach($hiddenEvents as $hiddenEvent) : ?>
+                    <li>
+                        <article class="my-2 event">
+                            <span hidden><?= htmlspecialchars($hiddenEvent['position']) ?>
+                            </span>
                         </article>
 
                     </li>

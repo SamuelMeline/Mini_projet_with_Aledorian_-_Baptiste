@@ -14,6 +14,7 @@ class HomeController extends AbstractController
         // Récupérer la liste des articles
         $model = new Event();
         $events = $model->findx(5);
+        $hiddenEvents = $model->findAll();
 
         $model = new Comment();
         $comments = $model->findx(5);
@@ -21,6 +22,7 @@ class HomeController extends AbstractController
         // Afficher le template
         $this->render('Home.phtml', [
             'events' => $events,
+            'hiddenEvents' => $hiddenEvents,
             'comments' => $comments
         ]);
     }

@@ -19,7 +19,7 @@ class EventsListController extends AbstractController
         $events = $model->findAll();
 
         $this->render("eventsList.phtml", [
-            'events' => $events
+            'events' => $events,
         ]);
     }
 
@@ -33,11 +33,21 @@ class EventsListController extends AbstractController
         $model = new Comment();
         $comments = $model->findByPost($_GET['id']);
 
+        $pos = $showEvent['position'];
+
+        $pos = explode(" ",$pos);
+
+        // var_dump($pos);  
+
+        $results = json_decode(file_get_contents('https://api-adresse.data.gouv.fr/reverse/?lon='.$pos[0].'&lat='.$pos[1]), true);
+        
+        $address = $results["features"][0]["properties"]['label'];
 
         $this->render('show_event.phtml', [
             'event' => $showEvent,
             'comments' => $comments,
-            'user' => $user
+            'user' => $user,
+            'address' => $address
         ]);
     }
 
@@ -116,9 +126,9 @@ class EventsListController extends AbstractController
 
     public function edit(): void
     {
+
         $model = new Event();
         
-        var_dump($_POST);
         $model->editEvent($_POST['title'], $_POST['description'],$_POST['position'], $_POST['date'], $_POST['category'], $_POST['id']);
 
         $this->redirect("");
