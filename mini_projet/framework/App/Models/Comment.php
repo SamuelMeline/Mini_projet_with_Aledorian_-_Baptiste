@@ -61,6 +61,7 @@ class Comment extends AbstractModel
             FROM Comments c
             INNER JOIN Users u ON c.user_id = u.id
             INNER JOIN Events e ON e.id = c.event_id
+            ORDER BY created_at DESC
             limit 5'
         );
     }

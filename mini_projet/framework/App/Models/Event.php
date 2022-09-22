@@ -45,6 +45,7 @@ class Event extends AbstractModel{
             FROM Events e
             INNER JOIN Users u ON e.user_id = u.id
             INNER JOIN Categories c ON e.category_id = c.id
+            ORDER BY created_at DESC
             limit 5'
         );
     }
