@@ -116,9 +116,12 @@ class EventsListController extends AbstractController
 
     public function edit(): void
     {
-        $event = $model->editEvent($_POST['title'], $_POST['description'], $_POST['pictures'], $_POST['start'], $_POST['category'], $_POST['id']);
+        $model = new Event();
+        
+        var_dump($_POST);
+        $model->editEvent($_POST['title'], $_POST['description'],$_POST['position'], $_POST['date'], $_POST['category'], $_POST['id']);
 
-        $this->redirect("/");
+        $this->redirect("");
     }
 
     public function editForm(): void
@@ -269,7 +272,5 @@ class EventsListController extends AbstractController
                 "events" => $events
             ]);
         }
-
-
     }
 }
