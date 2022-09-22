@@ -3,7 +3,7 @@
         <h1 class='ms-auto'>Event</h1>
         <!-- Button trigger modal -->
         <?php if ($user->getUsername() === 'admin' || $user->getId() === $event['user_id']) : ?>
-            <button class="btn btn-primary col-2"><a href="<?= url("/edit?id=" . $_GET['id']) ?>"></a>edit</button>
+            <a href="<?= url('/edit?id=' . $event['id']) ?>" class="btn btn-primary">Modifier</a>
         
         <?php else : ?>
             <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -41,6 +41,7 @@
             <small>Rédigé par <?= htmlspecialchars($event['username']) ?> le <?= htmlspecialchars($event['created_at']) ?></small>
             <h3><?= htmlspecialchars($event['started_at']) ?></h3>
             <p><?= htmlspecialchars($event['description']) ?></p>
+            <small>addresse : <?= htmlspecialchars($address )?></small>
         </article>
         <section>
             <h2>Espace commentaires</h2>
